@@ -11,10 +11,9 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: "fab fa-facebook-f", href: "#", label: "Facebook" },
-    { icon: "fab fa-instagram", href: "#", label: "Instagram" },
-    { icon: "fab fa-youtube", href: "#", label: "YouTube" },
-    { icon: "fab fa-whatsapp", href: "#", label: "WhatsApp" },
+    { icon: "fab fa-facebook-f", href: "https://www.facebook.com/canavarlarufk?mibextid=ZbWKwL", label: "Facebook" },
+    { icon: "fab fa-instagram", href: "https://www.instagram.com/wolves_fc_azerbaijan?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", label: "Instagram" },
+    { icon: "fab fa-youtube", href: "https://youtube.com/@wolves_fc_azerbaijan?si=qNp4uVlirkFUbkBG", label: "YouTube" },
   ];
 
   return (
@@ -74,6 +73,8 @@ export default function Footer() {
                   <a
                     key={index}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-club-gray text-club-gold p-2 rounded-lg hover:bg-gray-600 transition-colors"
                     aria-label={social.label}
                   >

@@ -36,7 +36,7 @@ export default function Hero() {
             <span className="text-2xl md:text-3xl lg:text-4xl font-medium">Uşaq Futbol Klubu</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-black mb-8 max-w-3xl mx-auto leading-relaxed font-semibold">
             Gələcəyin futbol ulduzlarını yetişdiririk. Peşəkar məşq və dostluq mühitində uşaqlarınızın futbol bacarıqlarını inkişaf etdirin.
           </p>
           

@@ -104,6 +104,13 @@ This is a full-stack web application for a youth football club called "Wolves" b
 ```
 Changelog:
 - July 02, 2025. Initial setup
+- July 02, 2025. Updated social media links with authentic URLs:
+  * Instagram: https://www.instagram.com/wolves_fc_azerbaijan
+  * Facebook: https://www.facebook.com/canavarlarufk
+  * YouTube: https://youtube.com/@wolves_fc_azerbaijan
+  * Removed WhatsApp per user request
+- July 02, 2025. Fixed hero section text color from gray to black for better visibility
+- July 02, 2025. Added target="_blank" to all social media links for external navigation
 ```
 
 ## User Preferences

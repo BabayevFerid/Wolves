@@ -54,10 +54,9 @@ export default function Contact() {
   };
 
   const socialLinks = [
-    { icon: "fab fa-facebook-f", href: "#", label: "Facebook", bgColor: "bg-blue-600" },
-    { icon: "fab fa-instagram", href: "#", label: "Instagram", bgColor: "bg-pink-600" },
-    { icon: "fab fa-youtube", href: "#", label: "YouTube", bgColor: "bg-red-600" },
-    { icon: "fab fa-whatsapp", href: "#", label: "WhatsApp", bgColor: "bg-green-600" },
+    { icon: "fab fa-facebook-f", href: "https://www.facebook.com/canavarlarufk?mibextid=ZbWKwL", label: "Facebook", bgColor: "bg-blue-600" },
+    { icon: "fab fa-instagram", href: "https://www.instagram.com/wolves_fc_azerbaijan?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", label: "Instagram", bgColor: "bg-pink-600" },
+    { icon: "fab fa-youtube", href: "https://youtube.com/@wolves_fc_azerbaijan?si=qNp4uVlirkFUbkBG", label: "YouTube", bgColor: "bg-red-600" },
   ];
 
   return (
@@ -131,6 +130,8 @@ export default function Contact() {
                       <a
                         key={index}
                         href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className={`${social.bgColor} text-white p-4 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center`}
                         aria-label={social.label}
                       >
