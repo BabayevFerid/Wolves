@@ -5,6 +5,8 @@ import {
   type Video, type InsertVideo,
   type Contact, type InsertContact
 } from "@shared/schema";
+import { db } from "./db";
+import { eq, desc } from "drizzle-orm";
 
 export interface IStorage {
   // News
@@ -63,7 +65,7 @@ export class MemStorage implements IStorage {
       certificate: "UEFA D kateqoriya sertifikatı",
       description: "Hər uşağın özünəməxsus potensialı var. Mənim məqsədim onların futbol bacarıqlarını inkişaf etdirməklə yanaşı, komanda ruhu və özgüvən aşılamaqdır. Əyləncəli və təhsil verici mühitdə uşaqlar həm öyrənir, həm də sevdikləri oyunu oynayırlar.",
       imageUrl: "https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1887&q=80",
-      achievements: ["50+ məşq etdiyi oyuncu", "3 qazanılan turnir", "95% valideyn məmnuniyyəti"],
+      achievements: ["3 yaş qrupu", "6 həftəlik məşq", "100% təhlükəsizlik", "4.9 valideyn reytinqi"],
       isMainCoach: true,
     };
     this.coaches.set(mainCoach.id, mainCoach);
@@ -205,4 +207,74 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export class DatabaseStorage implements IStorage {
+  async getNews(): Promise<News[]> {
+    return await db.select().from(news).orderBy(desc(news.publishedAt));
+  }
+
+  async getNewsById(id: number): Promise<News | undefined> {
+    const [newsItem] = await db.select().from(news).where(eq(news.id, id));
+    return newsItem || undefined;
+  }
+
+  async createNews(insertNews: InsertNews): Promise<News> {
+    const [newsItem] = await db
+      .insert(news)
+      .values(insertNews)
+      .returning();
+    return newsItem;
+  }
+
+  async getCoaches(): Promise<Coach[]> {
+    return await db.select().from(coaches);
+  }
+
+  async getCoachById(id: number): Promise<Coach | undefined> {
+    const [coach] = await db.select().from(coaches).where(eq(coaches.id, id));
+    return coach || undefined;
+  }
+
+  async getMainCoach(): Promise<Coach | undefined> {
+    const [coach] = await db.select().from(coaches).where(eq(coaches.isMainCoach, true));
+    return coach || undefined;
+  }
+
+  async createCoach(insertCoach: InsertCoach): Promise<Coach> {
+    const [coach] = await db
+      .insert(coaches)
+      .values(insertCoach)
+      .returning();
+    return coach;
+  }
+
+  async getVideos(): Promise<Video[]> {
+    return await db.select().from(videos);
+  }
+
+  async getVideoById(id: number): Promise<Video | undefined> {
+    const [video] = await db.select().from(videos).where(eq(videos.id, id));
+    return video || undefined;
+  }
+
+  async createVideo(insertVideo: InsertVideo): Promise<Video> {
+    const [video] = await db
+      .insert(videos)
+      .values(insertVideo)
+      .returning();
+    return video;
+  }
+
+  async getContacts(): Promise<Contact[]> {
+    return await db.select().from(contacts).orderBy(desc(contacts.createdAt));
+  }
+
+  async createContact(insertContact: InsertContact): Promise<Contact> {
+    const [contact] = await db
+      .insert(contacts)
+      .values(insertContact)
+      .returning();
+    return contact;
+  }
+}
+
+export const storage = new DatabaseStorage();

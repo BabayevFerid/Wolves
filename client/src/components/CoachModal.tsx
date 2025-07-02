@@ -84,17 +84,20 @@ export default function CoachModal({ coach, isOpen, onClose }: CoachModalProps) 
             <h3 className="text-xl font-semibold text-club-black mb-4">
               Nailiyyətlər
             </h3>
-            <div className="grid grid-cols-3 gap-4">
-              {coach.achievements.map((achievement, index) => (
-                <Card key={index} className="p-4 text-center bg-gray-50">
-                  <div className="text-2xl font-bold text-club-gold mb-1">
-                    {index === 0 ? "50+" : index === 1 ? "3" : "95%"}
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    {achievement}
-                  </div>
-                </Card>
-              ))}
+            <div className="grid grid-cols-4 gap-4">
+              {coach.achievements.map((achievement, index) => {
+                const values = ["3", "6", "100%", "4.9"];
+                return (
+                  <Card key={index} className="p-4 text-center bg-gray-50">
+                    <div className="text-2xl font-bold text-club-gold mb-1">
+                      {values[index]}
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      {achievement}
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         )}

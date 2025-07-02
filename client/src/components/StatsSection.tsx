@@ -3,24 +3,24 @@ import { Card } from "@/components/ui/card";
 export default function StatsSection() {
   const stats = [
     {
-      number: "50+",
-      label: "Aktiv Oyuncu",
-      icon: "fas fa-users",
+      number: "3",
+      label: "Yaş Qrupu",
+      icon: "fas fa-child",
     },
     {
-      number: "5",
-      label: "İl Təcrübə",
-      icon: "fas fa-calendar-alt",
-    },
-    {
-      number: "15",
-      label: "Qazanılan Kubuk",
-      icon: "fas fa-trophy",
+      number: "6",
+      label: "Həftəlik Məşq",
+      icon: "fas fa-running",
     },
     {
       number: "100%",
-      label: "Məmnuniyyət",
-      icon: "fas fa-heart",
+      label: "Təhlükəsizlik",
+      icon: "fas fa-shield-alt",
+    },
+    {
+      number: "4.9",
+      label: "Valideyn Reytinqi",
+      icon: "fas fa-star",
     },
   ];
 
