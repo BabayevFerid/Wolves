@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useMobileMenu } from "@/hooks/use-mobile-menu";
-import wolvesLogo from "@assets/image_1751447075567.png";
+import wolvesLogo from "@assets/image_1751447923977.png";
 
 export default function Navigation() {
   const [location] = useLocation();

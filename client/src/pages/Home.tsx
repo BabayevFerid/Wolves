@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import StatsSection from "@/components/StatsSection";
 import NewsCard from "@/components/NewsCard";
+import NewsModal from "@/components/NewsModal";
 import VideoCard from "@/components/VideoCard";
 import CoachCard from "@/components/CoachCard";
 import CoachModal from "@/components/CoachModal";
@@ -15,6 +16,8 @@ import type { News, Video, Coach } from "@shared/schema";
 export default function Home() {
   const [selectedCoach, setSelectedCoach] = useState<Coach | null>(null);
   const [isCoachModalOpen, setIsCoachModalOpen] = useState(false);
+  const [selectedNews, setSelectedNews] = useState<News | null>(null);
+  const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
 
   const { data: news, isLoading: newsLoading } = useQuery<News[]>({
     queryKey: ["/api/news"],
@@ -39,8 +42,11 @@ export default function Home() {
   };
 
   const handleNewsReadMore = (id: number) => {
-    // TODO: Implement news detail modal or page
-    alert('Xəbər detalları - bu funksionallıq hazırlanır');
+    const newsItem = news?.find(item => item.id === id);
+    if (newsItem) {
+      setSelectedNews(newsItem);
+      setIsNewsModalOpen(true);
+    }
   };
 
   return (
@@ -196,6 +202,12 @@ export default function Home() {
         coach={selectedCoach}
         isOpen={isCoachModalOpen}
         onClose={() => setIsCoachModalOpen(false)}
+      />
+      
+      <NewsModal 
+        news={selectedNews}
+        isOpen={isNewsModalOpen}
+        onClose={() => setIsNewsModalOpen(false)}
       />
     </div>
   );

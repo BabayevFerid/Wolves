@@ -68,58 +68,15 @@ export class MemStorage implements IStorage {
     };
     this.coaches.set(mainCoach.id, mainCoach);
 
-    // Assistant coaches
-    const assistantCoach1: Coach = {
-      id: this.currentCoachId++,
-      name: "Elxan Əliyev",
-      position: "Köməkçi Məşqçi",
-      experience: "3 il təcrübə",
-      certificate: "Futbol federasiyası sertifikatı",
-      description: "Uşaqlarla işləməkdə ixtisaslaşmış məşqçi. Gənc oyunçuların bacarıqlarını inkişaf etdirməyə fokuslanır.",
-      imageUrl: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=1974&q=80",
-      achievements: ["Uşaq məşqçisi", "Gənc oyunçu inkişafı mütəxəssisi"],
-      isMainCoach: false,
-    };
-    this.coaches.set(assistantCoach1.id, assistantCoach1);
-
-    const fitnessCoach: Coach = {
-      id: this.currentCoachId++,
-      name: "Səbinə Həsənova",
-      position: "Fitnes Məşqçisi",
-      experience: "4 il təcrübə",
-      certificate: "Beynəlxalq fitnes sertifikatı",
-      description: "Oyunçuların fiziki hazırlığı və sağlamlığı üçün məsul mütəxəssis. Yaralanmaların qarşısının alınması və performansın artırılması üzrə işləyir.",
-      imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-      achievements: ["Fiziki hazırlıq mütəxəssisi", "Beynəlxalq sertifikat"],
-      isMainCoach: false,
-    };
-    this.coaches.set(fitnessCoach.id, fitnessCoach);
-
     // News articles
     const newsArticles: Omit<News, 'id'>[] = [
       {
-        title: "Böyük Qələbə Turnirdə!",
-        content: "Komandamız rayon turnirində əla nəticə göstərərək 1-ci yeri qazandı. Bütün oyunçularımızı təbrik edirik! Bu qələbə həm oyunçular, həm də məşqçilərimiz üçün böyük sevinc mənbəyidir.",
-        excerpt: "Komandamız rayon turnirində əla nəticə göstərərək 1-ci yeri qazandı. Bütün oyunçularımızı təbrik edirik!",
-        category: "Qələbə",
-        imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=1993&q=80",
-        publishedAt: new Date('2024-01-15'),
-      },
-      {
         title: "Yeni Məşq Sezonuna Start",
-        content: "2024-cü il üçün yeni məşq proqramımız başladı. Daha intensiv və əyləncəli məşqlər! Uşaqlarımız üçün yeni texnikalar və oyun strategiyaları öyrənəcəyik.",
-        excerpt: "2024-cü il üçün yeni məşq proqramımız başladı. Daha intensiv və əyləncəli məşqlər!",
+        content: "2025-ci il yay sezonuna hazırlıq məşqləri başladı! Wolves Uşaq Futbol Klubu olaraq, yeni mövsümə böyük həvəs və yeniliklər ilə giririk. Bu məvsümdə uşaqlarımız üçün daha texniki və taktiki yönlü məşq proqramı hazırlamışıq. \n\nBaş məşqçimiz Fərhad Babayev rəhbərliyində hazırlanan məşq planı aşağıdakı əsas istiqamətləri əhatə edir:\n\n• Texniki bacarıqların inkişafı (top idarəetməsi, ötürmə, vuruş)\n• Taktiki biliklərin formalaşdırılması (mövqe alma, komanda oyunu)\n• Fiziki hazırlığın gücləndirilməsi (sürət, çeviklik, dözümlülük)\n• Komanda ruhunun artırılması (əməkdaşlıq, dostluq, güvən)\n\nMəşqlərimiz həftənin 3 günü (Çərşənbə axşamı, Cuma və Bazar günləri) Yeni Günəşli məkanında keçirilir. Hər yaş qrupu üçün xüsusi vaxt cədvəli və məşq intensivliyi nəzərdə tutulub.\n\nYeni sezona qoşulmaq istəyən valideynlər bizimə əlaqə bölməsindən yazaraq məlumat ala bilərlər.",
+        excerpt: "2025-ci il yay sezonuna hazırlıq məşqləri başladı! Wolves klubu yeni mövsümə böyük həvəs və yeniliklər ilə giririk.",
         category: "Məşq",
         imageUrl: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80",
-        publishedAt: new Date('2024-01-12'),
-      },
-      {
-        title: "Yaz Turniri Elanı",
-        content: "Mart ayında böyük yaz turniri keçiriləcək. Qeydiyyat başladı! Bu turnirdə müxtəlif yaş qruplarından komandalar iştirak edəcək.",
-        excerpt: "Mart ayında böyük yaz turniri keçiriləcək. Qeydiyyat başladı!",
-        category: "Turnir",
-        imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-        publishedAt: new Date('2024-01-08'),
+        publishedAt: new Date('2025-06-15'),
       },
     ];
 
@@ -203,6 +160,8 @@ export class MemStorage implements IStorage {
     const coach: Coach = {
       id: this.currentCoachId++,
       ...insertCoach,
+      achievements: insertCoach.achievements ?? null,
+      isMainCoach: insertCoach.isMainCoach ?? null,
     };
     this.coaches.set(coach.id, coach);
     return coach;
@@ -237,6 +196,8 @@ export class MemStorage implements IStorage {
     const contact: Contact = {
       id: this.currentContactId++,
       ...insertContact,
+      phone: insertContact.phone ?? null,
+      childAge: insertContact.childAge ?? null,
       createdAt: new Date(),
     };
     this.contacts.set(contact.id, contact);

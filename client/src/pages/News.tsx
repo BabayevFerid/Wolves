@@ -1,18 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import NewsCard from "@/components/NewsCard";
+import NewsModal from "@/components/NewsModal";
 import Footer from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { News } from "@shared/schema";
 
 export default function News() {
+  const [selectedNews, setSelectedNews] = useState<News | null>(null);
+  const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
+
   const { data: news, isLoading, error } = useQuery<News[]>({
     queryKey: ["/api/news"],
   });
 
   const handleNewsReadMore = (id: number) => {
-    // TODO: Implement news detail modal or page
-    alert('Xəbər detalları - bu funksionallıq hazırlanır');
+    const newsItem = news?.find(item => item.id === id);
+    if (newsItem) {
+      setSelectedNews(newsItem);
+      setIsNewsModalOpen(true);
+    }
   };
 
   return (
@@ -76,6 +84,12 @@ export default function News() {
       </section>
 
       <Footer />
+      
+      <NewsModal 
+        news={selectedNews}
+        isOpen={isNewsModalOpen}
+        onClose={() => setIsNewsModalOpen(false)}
+      />
     </div>
   );
 }

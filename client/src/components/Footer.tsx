@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import wolvesLogo from "@assets/image_1751447075567.png";
+import wolvesLogo from "@assets/image_1751447923977.png";
 
 export default function Footer() {
   const navLinks = [
